@@ -1,8 +1,8 @@
-import { useState } from 'preact/hooks';
+import React, { useState } from 'react';
 import { VStack, HStack, Input, Button, Text, Divider, Box, Heading, useToast } from '@chakra-ui/react';
-import { Trash2, Plus } from 'lucide-preact';
+import { Trash2, Plus } from 'lucide-react';
 
-export function AdvancedCBA() {
+export default function AdvancedCBA() {
   const [costs, setCosts] = useState([{ id: 1, label: '', value: 0 }]);
   const [benefits, setBenefits] = useState([{ id: 1, label: '', value: 0 }]);
   const toast = useToast();
@@ -30,12 +30,12 @@ export function AdvancedCBA() {
       description: `Net Benefit: ${netBenefit.toFixed(2)} | BCR: ${bcr}`,
       status: netBenefit >= 0 ? 'success' : 'error',
       duration: 5000,
-      isClosable: 1, // Note: isClosable takes boolean in Chakra. Correcting to true.
+      isClosable: true,
     });
   };
 
   return (
-    <VStack spacing={6} align="stretch" pt={4}>
+    <VStack gap={6} align="stretch" pt={4}>
       <Heading size="md">Advanced Analysis</Heading>
       
       <Box p={4} borderWidth="1px" borderRadius="md">

@@ -1,8 +1,9 @@
-import { useState } from 'preact/hooks';
-import { VStack, HStack, Input, Button, Text, Divider, Box, Heading, useToast } from '@chakra-ui/react';
-import { Trash2, Plus } from 'lucide-preact';
+import React, { useState } from 'react'; // FIXED: Changed 'react/hooks' to 'react'
+import { VStack, HStack, Input, Button, Text, Box, Heading, useToast, Divider } from '@chakra-ui/react'; // FIXED: Cleaned up imports
+import { Trash2, Plus } from 'lucide-react'; // FIXED: Ensure lucide-react is used
 
-export function SimpleCBA() {
+// FIXED: Changed to default export for App.jsx compatibility
+export default function SimpleCBA() {
   const [scenarios, setScenarios] = useState([
     { id: 1, name: '', benefits: '', costs: '', probability: 1 }
   ]);
@@ -45,11 +46,11 @@ export function SimpleCBA() {
   };
 
   return (
-    <VStack spacing={4} align="stretch" pt={4}>
+    <VStack gap={4} align="stretch" pt={4}> {/* Changed spacing to gap for modern Chakra */}
       <Heading size="md">Scenario Comparison</Heading>
       {scenarios.map((s) => (
         <Box key={s.id} p={4} borderWidth="1px" borderRadius="md">
-          <VStack spacing={3} align="start">
+          <VStack gap={3} align="start"> {/* Changed spacing to gap */}
             <HStack w="full">
               <Input placeholder="Scenario Name" value={s.name} onChange={(e) => updateScenario(s.id, 'name', e.target.value)} />
               <Button size="sm" onClick={() => removeScenario(s.id)} colorScheme="red" variant="ghost"><Trash2 size={18}/></Button>
