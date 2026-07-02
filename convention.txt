@@ -1,0 +1,173 @@
+
+handsonreact.com
+Code Organization & Conventions | Hands on React
+5–7 minutes
+Code Organization​
+Opinions​
+
+React doesn’t have opinions on how you put files into folders. That said there are a few common approaches popular in the ecosystem you may want to consider.
+
+    Start with one file...then move files around until they feel right -Dan Abramov
+
+Key Questions​
+
+    Group by features or file types?
+    Grouping by features​
+
+    One common way to structure projects is locate CSS, JS, and tests together inside folders grouped by feature or route.
+
+    common/
+      Avatar.js
+      Avatar.css
+      APIUtils.js
+      APIUtils.test.js
+    feed/
+      index.js
+      Feed.js
+      Feed.css
+      FeedStory.js
+      FeedStory.test.js
+      FeedAPI.js
+    profile/
+      index.js
+      Profile.js
+      ProfileHeader.js
+      ProfileHeader.css
+      ProfileAPI.js
+
+    Grouping by file type​
+
+    Another popular way to structure projects is to group similar files together, for example:
+
+    api/
+      APIUtils.js
+      APIUtils.test.js
+      ProfileAPI.js
+      UserAPI.js
+    components/
+      Avatar.js
+      Avatar.css
+      Feed.js
+      Feed.css
+      FeedStory.js
+      FeedStory.test.js
+      Profile.js
+      ProfileHeader.js
+      ProfileHeader.css
+
+    Pro/Con​
+
+        Grouping by features works better the larger the project gets (think more components).
+
+        Grouping by file type can keep things simple with smaller projects
+
+    Should a component have it's own folder?
+    Pro/Con​
+        Not creating folders can keep make smaller projects easier to navigate. This "keeps it simple."
+        Creating additional folders can result in too much nesting
+
+    If you do create a separate folder for a component, should you:
+
+    name the file with the same name as the component?
+
+    Button/
+      Button.js
+      Button.css
+    Header/
+      Header.js
+      Header.css
+
+    import Button from "../Button/Button";
+
+    put component code in [Component-Name]/index.js
+
+    Button/
+      index.js
+      style.css
+    Header/
+      index.js
+      style.css
+
+    //Button/index.js
+    export default class Button;
+
+    import Button from "../Button";
+
+    create an index.js (to make imports cleaner)?
+
+    Button/
+      index.js
+      Button.js
+      Button.css
+    Header/
+      index.js
+      Header.js
+      Header.css
+
+    //Button.js
+    export default class Button {...};
+
+    //index.js
+    export { default } from "./Button";
+
+    import Button from "../Button";
+
+    Pro/Con​
+        When every file is named index.js or style.css it can become difficult to navigate your code
+        import Button from '../Button/Button'; is redundant
+
+    If I use Redux what should my file or code structure look like?
+
+Best Practices​
+
+Below are some best practices direct from the React documentation.
+
+    Avoid too much nesting
+
+    There are many pain points associated with deep directory nesting in JavaScript projects. It becomes harder to write relative imports between them, or to update those imports when the files are moved. Unless you have a very compelling reason to use a deep folder structure, consider limiting yourself to a maximum of three or four nested folders within a single project. Of course, this is only a recommendation, and it may not be relevant to your project.
+
+    Don't overthink it
+
+    If you're just starting a project, don't spend more than five minutes on choosing a file structure. Pick any of the above approaches (or come up with your own) and start writing code! You'll likely want to rethink it anyway after you've written some real code.
+
+    If you feel completely stuck, start by keeping all files in a single folder. Eventually it will grow large enough that you will want to separate some files from the rest. By that time you'll have enough knowledge to tell which files you edit together most often. In general, it is a good idea to keep files that often change together close to each other. This principle is called "colocation".
+
+    As projects grow larger, they often use a mix of both of the above approaches in practice. So choosing the "right" one in the beginning isn't very important.
+
+Code Conventions (Style Guides)​
+
+Here are links to public React style guides but unfortunately they were created at a time when class components were a best practice and have not been updated at the time of this writing.
+
+    AirBnB React Style Guide
+    Khan Academy Style Guide
+    CSS Tricks Blog Post on React Conventions
+
+In summary, they are all have good information but aren't very comprehensive, seem to not have evolved when the React library changes, and contradict each other at times.
+
+Start with the AirBnB React Style Guide as basis for your React coding conventions.
+
+    In particular, the section Ordering within Component Classes is useful.
+
+Project Setup​
+
+Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration. This should be your default choice for business applications and is usually the right choice.
+
+See the documentation for Create React App for more information.
+
+If you need to build a single-page React application that supports server-side rendering you should consider using Next.js.
+
+If you need to use create a static React website you should consider using Next.js or Gatsby...a free and open source framework based on React that helps developers build blazing fast websites and apps.
+Reference​
+Code Organization​
+
+    React Documentation: File Structure
+    Stackoverflow: React Code Naming Conventions
+    React Folder Structure
+    Dan Abramov File Structure Comment on Twitter
+    Ways to Structure React App
+    Components having own folder should have a component file with the same name
+    File Layout that Considers Container & Redux Components
+
+Code Conventions​
+
+TC 39: JavaScript Language Feature Approval Process
